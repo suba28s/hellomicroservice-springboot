@@ -24,6 +24,11 @@
 			<artifactId>spring-boot-starter</artifactId>
 		</dependency>
 
+          	 <dependency>
+   			<groupId>org.springframework.boot</groupId>
+   			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency> 
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -43,7 +48,44 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<plugin>
+	          	   <groupId>org.apache.maven.plugins</groupId>
+        		   <artifactId>maven-compiler-plugin</artifactId>
+	                   <version>3.8.1</version>
+		           <configuration>
+		                <fork>true</fork> 
+				<compilerVersion>1.8</compilerVersion>
+	                        <source>1.8</source>
+        	                <target>1.8</target>
+                		<executable>/opt/JAVA/JAVA64/jdk1.8.0_92/bin/javac</executable>
+		           </configuration>
+        	        </plugin>
+			<plugin>
+			  <groupId>io.fabric8</groupId>
+			  <artifactId>fabric8-maven-plugin</artifactId>
+			  <version>4.3.1</version>
+			  <configuration>
+			  <generateRoute>true</generateRoute>
+			    <enricher>
+		            <config>
+		                  <!--<generateRoute>true</generateRoute>-->
+			           <fmp-service>
+					  <name>demo-service</name>
+			  	      	  <type>ClusterIP</type>
+		        	   </fmp-service>
+		            </config>
+			    </enricher>
+			  </configuration>
+  			  <executions>
+		      	    <execution>
+			      <goals>
+			        <goal>resource</goal>
+			        <goal>build</goal>
+				<goal>deploy</goal>
+			      </goals>
+			    </execution>
+			  </executions>
+			</plugin>
 		</plugins>
 	</build>
-
 </project>
